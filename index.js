@@ -6,7 +6,7 @@ const cors = require('cors')
 app.use(cors());
 
 app.get('/', (req, res) => {
-    res.json({ test: "succesfull" })
+    res.json({ test: "succesfull", name:"ajinkya"})
 })
 
 app.listen(PORT, () => console.log('server started at port', PORT))
