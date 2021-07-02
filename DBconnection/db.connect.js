@@ -6,7 +6,7 @@ const initialConnection=async()=>{
             useUnifiedTopology : true,
             useNewUrlParser : true
         })
-        if(connecton){
+        if(connection){
             console.log("connection Successful")
         }
     }

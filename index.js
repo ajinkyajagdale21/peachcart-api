@@ -8,7 +8,7 @@ const {addProductToDB} = require('./models/product.model')
 const cors = require('cors')
 
 initialConnection();
-addProductToDB();
+//addProductToDB();
 app.use(cors());
 
 app.get('/', (req, res) => {
