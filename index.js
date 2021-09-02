@@ -2,7 +2,9 @@ const express = require('express')
 const app = express();
 const PORT = process.env.PORT || 8000
 const products =require("./routes/product.route")
+const cart = require('./routes/cart.route')
 const {initialConnection} = require('./DBconnection/db.connect')
+
 //const {Product,addProductToDB} = require('./models/product.model')
 
 
@@ -12,6 +14,7 @@ initialConnection();
 //addProductToDB();
 app.use(cors());
 app.use('/products',products)
+app.use('/cart',cart)
 app.get('/' , (req , res) => {
     res.send('hello express')
 })
