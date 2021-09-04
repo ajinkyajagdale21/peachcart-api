@@ -33,7 +33,6 @@ router.route('/:userId')
         let {cart}= req
         try {
             cart = await cart.populate('items._id').execPopulate()
-            console.log(cart)
             const NormalizedCart = cart.items.map((item) => ({...item._id._doc , quantity : item.quantity}))
             res.status(200).json({success : true , cart : NormalizedCart})
         }
@@ -57,7 +56,7 @@ router.route('/:userId')
                 res.status(201).json({success : true , product})
             } 
         catch (error) {
-            res.status(400).json({success : false , message : error.message})
+            res.status(404).json({success : false , message : error.message})
         }
     })
 
