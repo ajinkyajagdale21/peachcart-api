@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const {Schema} = mongoose;
-const Cart = require('./cart.model');
-const Wishlist = require('./wishlist.model')
+const {Cart }= require('./cart.model');
+const {Wishlist} = require('./wishlist.model')
 
 const UserSchema = new Schema({
     firstName : {
@@ -38,6 +38,13 @@ const UserSchema = new Schema({
 
 const User = mongoose.model('User' , UserSchema);
 
+const user=[
+    {
+    firstName : 'Admin',
+    lastName : 'Admin',
+    email : 'admin@gmail.com',
+    password : 'Admin1!1'}
+]
 const addUserToDb =  () => {
     user.forEach(async (user) =>{
         const NewUser = new User(user);
