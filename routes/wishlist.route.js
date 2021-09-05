@@ -1,6 +1,5 @@
 const express= require('express');
-const { lastIndexOf } = require('lodash');
-const { Cart } = require('../models/cart.model');
+const { extend } = require('lodash');
 const {Wishlist} = require('../models/wishlist.model');
 const router = express.Router();
 
@@ -63,5 +62,23 @@ router.route('/:userId')
             res.status(404).json({success : false , message : error.message})
         }
     })      
+
+router.route('/:userId/:productId')
+    .delete(async(req,res)=>{
+      try{
+        const {wishlist}= req;
+        const {productId}= req.params;
+        const product = wishlist.items.find(item=>item._id==productId)
+        if(product){
+          wishlist.items.pull({_id: productId})
+          await wishlist.save();
+          return res.status(200).json({success : true , product})
+        }
+        res.status(400).json({success : false , message : 'product not found'})
+      }
+      catch(error){
+        res.status(400).json({success : false , message : error.message })
+      }
+    })
 
 module.exports = router

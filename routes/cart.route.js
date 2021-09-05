@@ -2,6 +2,7 @@ const { Router } = require("express");
 const express= require('express');
 const { Cart } = require("../models/cart.model");
 const router = Router()
+const {extend} = require('lodash')
 
 router.route('/')
     .get(async(req,res)=>{
@@ -66,11 +67,11 @@ router.route('/:userId/:productId')
             let {cart} = req;
             const {productId}= req.params;
             const updateProduct = req.body;
-            let product = cart.items.find(item == productId)
+            let product = cart.items.find(item=>item._id == productId)
             if(product){
                 product = extend(product,updateProduct);
                 await cart.save();
-                res.json({success:true,product})
+               return res.json({success:true,product})
             }
             res.status(400).json({success : false , message : 'product not found'})
         }
