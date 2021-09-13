@@ -5,6 +5,7 @@ const PORT = process.env.PORT || 8000
 const products =require("./routes/product.route")
 const cart = require('./routes/cart.route')
 const wishlist = require('./routes/wishlist.route')
+const auth = require('./routes/auth.route')
 const {initialConnection} = require('./DBconnection/db.connect')
 const {addUserToDb} = require('./models/users.model')
 //const {Product,addProductToDB} = require('./models/product.model')
@@ -20,6 +21,7 @@ app.use(bodyParser.json())
 app.use('/products',products)
 app.use('/cart',cart)
 app.use('/wishlist',wishlist)
+app.use('/auth',auth)
 
 app.get('/' , (req , res) => {
     res.send('hello express')
